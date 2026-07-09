@@ -1,0 +1,14 @@
+[package]
+name = "cmux-sidebar-fzf"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+license = "MIT"
+description = "Fuzzy-find workspaces, screens, and panes in a cmux sidebar"
+repository = "https://github.com/manaflow-ai/cmux-sidebar-fzf"
+
+[dependencies]
+anyhow = "1.0.100"
+cmux-client = "0.1"
+crossterm = "0.29.0"
+ratatui = "0.30.2"
