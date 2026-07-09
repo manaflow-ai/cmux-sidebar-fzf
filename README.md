@@ -8,7 +8,7 @@
 
 A cmux sidebar plugin is an ordinary terminal (TUI) program. cmux runs it inside a PTY sized to the sidebar rectangle and renders its output in the sidebar; when the user focuses the sidebar, keystrokes go to the plugin verbatim. cmux's global prefix chord is the escape hatch back to cmux.
 
-cmux exposes its mux control socket to the plugin with the `CMUX_MUX_SOCKET` environment variable. The value is the path to the JSON-lines control socket. The variable is present when launched by cmux, and can also be set manually for standalone development.
+cmux exposes its control socket to the plugin with the `CMUX_TUI_SOCKET` environment variable (legacy name `CMUX_MUX_SOCKET` is still set and accepted). The value is the path to the JSON-lines control socket. The variable is present when launched by cmux, and can also be set manually for standalone development.
 
 Terminal size comes from the PTY through normal terminal sizing and `SIGWINCH`; sidebar plugins do not need a special resize protocol.
 
@@ -30,29 +30,29 @@ Plugins should not exit on `Esc`; cmux owns the focus escape chord. In this plug
 Run cmux, find the mux socket path, and pass it to the plugin:
 
 ```sh
-CMUX_MUX_SOCKET=/path/to/cmux-mux.sock cargo run
+CMUX_TUI_SOCKET=/path/to/cmux-tui.sock cargo run
 ```
 
 If your cmux build can print its socket path, a typical workflow is:
 
 ```sh
-CMUX_MUX_SOCKET=$(cmux-mux ... print socket path) cargo run
+CMUX_TUI_SOCKET=$(cmux-tui ... print socket path) cargo run
 ```
 
 For quick discovery on a local machine, socket paths often look like:
 
 ```sh
-ls /tmp/cmux-mux-*.sock
+ls /tmp/cmux-tui-*.sock
 ```
 
-Running without `CMUX_MUX_SOCKET` is supported and renders a helpful reconnect screen instead of panicking.
+Running without a socket env var is supported and renders a helpful reconnect screen instead of panicking.
 
 ## Install With cmux
 
 Plugin installation requires cmux >= the version that ships plugin support.
 
 ```sh
-cmux-mux plugin install https://github.com/manaflow-ai/cmux-sidebar-fzf
+cmux-tui plugin install https://github.com/manaflow-ai/cmux-sidebar-fzf
 ```
 
 The host-side plugin installer command ships separately from this reference plugin.

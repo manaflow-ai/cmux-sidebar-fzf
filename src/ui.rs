@@ -93,7 +93,7 @@ fn draw_reconnect(frame: &mut Frame<'_>, area: Rect, message: &str) {
     let lines = [
         "Reconnecting to cmux",
         message,
-        "Set CMUX_MUX_SOCKET to the cmux-mux JSON-lines socket path.",
+        "Set CMUX_TUI_SOCKET to the cmux-tui JSON-lines socket path.",
     ];
     for (idx, line) in lines.iter().enumerate() {
         if idx >= area.height as usize {

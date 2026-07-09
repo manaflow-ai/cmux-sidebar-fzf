@@ -227,12 +227,14 @@ impl App {
     }
 
     fn connect_or_schedule(&mut self) {
-        let socket_path = match env::var_os("CMUX_MUX_SOCKET") {
+        let socket_path = match env::var_os("CMUX_TUI_SOCKET")
+            .or_else(|| env::var_os("CMUX_MUX_SOCKET"))
+        {
             Some(path) if !path.is_empty() => PathBuf::from(path),
             _ => {
                 self.socket_path = None;
                 self.disconnect_with_backoff(
-                    "CMUX_MUX_SOCKET is not set. Launch this plugin from cmux, or run standalone with CMUX_MUX_SOCKET=/path/to/cmux-mux.sock cargo run.".to_string(),
+                    "CMUX_TUI_SOCKET is not set. Launch this plugin from cmux, or run standalone with CMUX_TUI_SOCKET=/path/to/cmux-tui.sock cargo run.".to_string(),
                 );
                 return;
             }
