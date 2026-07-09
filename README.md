@@ -1,5 +1,7 @@
 # cmux-sidebar-fzf
 
+![cmux-sidebar-fzf running next to a cmux mux session: fuzzy-filtering workspaces, screens, and panes](docs/screenshot.png)
+
 `cmux-sidebar-fzf` is the reference sidebar plugin for the cmux terminal multiplexer. It is an ordinary terminal program that renders an fzf-style fuzzy finder over the current cmux session tree, including workspaces, screens, and panes.
 
 ## Sidebar Plugin Contract
